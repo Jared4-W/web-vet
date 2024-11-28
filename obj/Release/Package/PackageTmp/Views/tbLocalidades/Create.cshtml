@@ -1,0 +1,106 @@
+﻿@model Examen1_JaredChavez.Models.tbLocalidades
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Registrar localidad</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Escriba el nombre de la Localidad</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Localidad, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Localidad, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Localidad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdMunicipio, "IdMunicipio", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IdMunicipio", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdMunicipio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.tbMunicipios.IdEstado, "IdEstado", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IdEstado", null, "selecciona estado", htmlAttributes: new { @class = "form-control", @onchange = "BuscarMunicipios();" })
+            @Html.ValidationMessageFor(model => model.tbMunicipios.IdEstado, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
+<script type="text/javascript">
+    function BuscarMunicipios()
+    {
+        var IdSeleccionado = $("#IdEstado").val();  //$ apunta al id de html
+        $("IdMunicipio").empty();    //limpia el dropdownlist        //&& = Y
+        if (IdSeleccionado != null && IdSeleccionado != "")//si el idseleccionado no es igual a nulo o vacio
+        {
+            var parametros = { IdE: IdSeleccionado }           //font a back
+            var metodo = '@Url.Action("GetMunicipios", "Met")'//lama metod que esta desde el controler localidades
+            $.ajax(
+            {
+            type: 'POST',
+            url: metodo,
+            dataType: 'json',
+            data: parametros,
+            success: function (listamunicipios) {
+            $.each(listamunicipios, function (i, part) {
+            $("#IdMunicipio").append('<option value="' + part.Value + '">' + part.Text + '</option>');
+            });
+            },
+            error: function (ex) {
+            alert('no se encontraron los municipios.');
+            }
+            });
+            }   //Ajax = invocar metodos y hacer cambios sin actualizar toda la pagina
+            }
+
+            function BuscarLocalidades()
+            {
+            var IdSeleccionado = $("#IdMunicipio").val();  //$ apunta al id de html
+            $("IdLocalidad").empty();    //limpia el dropdownlist        //&& = Y
+            if (IdSeleccionado != null && IdSeleccionado != "")//si el idseleccionado no es igual a nulo o vacio
+            {
+            var parametros = { IdL: IdSeleccionado }           //font a back
+            var metodo = '@Url.Action("GetLocalidades", "Met")'//lama metod que esta desde el controler localidades
+            $.ajax(
+            {
+            type: 'POST',
+            url: metodo,
+            dataType: 'json',
+            data: parametros,
+            success: function (listalocalidad) {
+            $.each(listalocalidad, function (i, part) {
+            $("#IdLocalidad").append('<option value="' + part.Value + '">' + part.Text + '</option>');
+            });
+            },
+            error: function (ex) {
+            alert('no se encontraron las localidades.');
+            }
+            });
+            }   //Ajax = invocar metodos y hacer cambios sin actualizar toda la pagina
+            }
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

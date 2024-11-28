@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAeHjT2A+9WkCD22cTj7t+rAAAAAACAAAAAAAQZgAAAAEAACAAAABKXM1TkQsDWKK/CtftIePyKfHIxvU8dtlw9uYn480u9AAAAAAOgAAAAAIAACAAAACkzFDgB4w5AN9HyeBd8z/enJzalCoC6f2enWyjACiJESAAAACBA8yIsI7FZdO6AfZyYXAMRpECiBJvGw8tEhmcOkjnGUAAAABtlWL4GSr5rN3NOcBMsY+tD/Fr/oNIF3cbjSmLC+5FKhKBNJjJytVWonM1fukgEJ0AxkXCHHpRiJk4yh1OL/rM</EncryptedPassword>
+    <_PublishTargetUrl>ftp://208.98.35.184/www.vet.com</_PublishTargetUrl>
+    <History>False|2024-11-28T03:47:56.2894123Z;</History>
+  </PropertyGroup>
+</Project>

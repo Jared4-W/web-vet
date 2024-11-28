@@ -1,0 +1,34 @@
+﻿@model Examen1_JaredChavez.Models.tbLocalidades
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles de la localidad</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Localidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbMunicipios.Municipio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbMunicipios.Municipio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdLocalidad }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

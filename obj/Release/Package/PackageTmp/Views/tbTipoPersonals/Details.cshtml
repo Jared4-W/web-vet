@@ -1,0 +1,26 @@
+﻿@model Examen1_JaredChavez.Models.tbTipoPersonal
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles del personal</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdTipoPer }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

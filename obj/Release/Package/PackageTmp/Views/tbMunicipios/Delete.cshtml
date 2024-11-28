@@ -1,0 +1,40 @@
+﻿@model Examen1_JaredChavez.Models.tbMunicipios
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar municipio</h2>
+
+<h3>¿estas seguro de eliminar este municipio?</h3>
+<div>
+    <h4>tbMunicipios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbEstados.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbEstados.Estado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Examen1_JaredChavez.Models.tbVeterinarios>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>veterinarios</h2>
+
+<p>
+    @Html.ActionLink("Registrar veterinario", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApellidoPaterno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApellidoMaterno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Calle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumExt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumInt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoPostal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NSS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CURP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SueldoXDia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TarjetaCredito)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbAreas.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbLocalidades.Localidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbTipoPersonal.Tipo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApellidoPaterno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApellidoMaterno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Calle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumExt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumInt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoPostal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NSS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CURP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SueldoXDia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TarjetaCredito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbAreas.Area)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbLocalidades.Localidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbTipoPersonal.Tipo)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdVet }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IdVet }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IdVet })
+        </td>
+    </tr>
+}
+
+</table>

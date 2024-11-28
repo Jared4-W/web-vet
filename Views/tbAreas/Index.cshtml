@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Examen1_JaredChavez.Models.tbAreas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Areas de la veterinaria</h2>
+
+<p>
+    @Html.ActionLink("Nueva Area", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ubicacion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Area)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ubicacion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdArea }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IdArea }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IdArea })
+        </td>
+    </tr>
+}
+
+</table>

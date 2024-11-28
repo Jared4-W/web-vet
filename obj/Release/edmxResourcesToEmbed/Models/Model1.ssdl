@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MascotaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbAreas">
+    <Key>
+      <PropertyRef Name="IdArea" />
+    </Key>
+    <Property Name="IdArea" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Area" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Ubicacion" Type="varchar" MaxLength="80" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbEstados">
+    <Key>
+      <PropertyRef Name="IdEstado" />
+    </Key>
+    <Property Name="IdEstado" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Estado" Type="varchar" MaxLength="70" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbLocalidades">
+    <Key>
+      <PropertyRef Name="IdLocalidad" />
+    </Key>
+    <Property Name="IdLocalidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Localidad" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IdMunicipio" Type="smallint" />
+  </EntityType>
+  <EntityType Name="tbMunicipios">
+    <Key>
+      <PropertyRef Name="IdMunicipio" />
+    </Key>
+    <Property Name="IdMunicipio" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Municipio" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IdEstado" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="tbTipoPersonal">
+    <Key>
+      <PropertyRef Name="IdTipoPer" />
+    </Key>
+    <Property Name="IdTipoPer" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbVeterinarios">
+    <Key>
+      <PropertyRef Name="IdVet" />
+    </Key>
+    <Property Name="IdVet" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="ApellidoPaterno" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="ApellidoMaterno" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Calle" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="NumExt" Type="int" />
+    <Property Name="NumInt" Type="varchar" MaxLength="10" />
+    <Property Name="CodigoPostal" Type="int" Nullable="false" />
+    <Property Name="IdLocalidad" Type="int" Nullable="false" />
+    <Property Name="NSS" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CURP" Type="varchar" MaxLength="18" Nullable="false" />
+    <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SueldoXDia" Type="money" Nullable="false" />
+    <Property Name="TarjetaCredito" Type="int" Nullable="false" />
+    <Property Name="IdTipoPer" Type="tinyint" />
+    <Property Name="IdArea" Type="smallint" />
+  </EntityType>
+  <Association Name="FK__tbLocalid__IdMun__44FF419A">
+    <End Role="tbMunicipios" Type="Self.tbMunicipios" Multiplicity="0..1" />
+    <End Role="tbLocalidades" Type="Self.tbLocalidades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMunicipios">
+        <PropertyRef Name="IdMunicipio" />
+      </Principal>
+      <Dependent Role="tbLocalidades">
+        <PropertyRef Name="IdMunicipio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbMunicip__IdEst__4222D4EF">
+    <End Role="tbEstados" Type="Self.tbEstados" Multiplicity="0..1" />
+    <End Role="tbMunicipios" Type="Self.tbMunicipios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEstados">
+        <PropertyRef Name="IdEstado" />
+      </Principal>
+      <Dependent Role="tbMunicipios">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbVeterin__IdAre__4CA06362">
+    <End Role="tbAreas" Type="Self.tbAreas" Multiplicity="0..1" />
+    <End Role="tbVeterinarios" Type="Self.tbVeterinarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbAreas">
+        <PropertyRef Name="IdArea" />
+      </Principal>
+      <Dependent Role="tbVeterinarios">
+        <PropertyRef Name="IdArea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbVeterin__IdLoc__4AB81AF0">
+    <End Role="tbLocalidades" Type="Self.tbLocalidades" Multiplicity="1" />
+    <End Role="tbVeterinarios" Type="Self.tbVeterinarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbLocalidades">
+        <PropertyRef Name="IdLocalidad" />
+      </Principal>
+      <Dependent Role="tbVeterinarios">
+        <PropertyRef Name="IdLocalidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbVeterin__IdTip__4BAC3F29">
+    <End Role="tbTipoPersonal" Type="Self.tbTipoPersonal" Multiplicity="0..1" />
+    <End Role="tbVeterinarios" Type="Self.tbVeterinarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoPersonal">
+        <PropertyRef Name="IdTipoPer" />
+      </Principal>
+      <Dependent Role="tbVeterinarios">
+        <PropertyRef Name="IdTipoPer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MascotaModelStoreContainer">
+    <EntitySet Name="tbAreas" EntityType="Self.tbAreas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbEstados" EntityType="Self.tbEstados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbLocalidades" EntityType="Self.tbLocalidades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbMunicipios" EntityType="Self.tbMunicipios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbTipoPersonal" EntityType="Self.tbTipoPersonal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbVeterinarios" EntityType="Self.tbVeterinarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tbLocalid__IdMun__44FF419A" Association="Self.FK__tbLocalid__IdMun__44FF419A">
+      <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+      <End Role="tbLocalidades" EntitySet="tbLocalidades" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbMunicip__IdEst__4222D4EF" Association="Self.FK__tbMunicip__IdEst__4222D4EF">
+      <End Role="tbEstados" EntitySet="tbEstados" />
+      <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbVeterin__IdAre__4CA06362" Association="Self.FK__tbVeterin__IdAre__4CA06362">
+      <End Role="tbAreas" EntitySet="tbAreas" />
+      <End Role="tbVeterinarios" EntitySet="tbVeterinarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbVeterin__IdLoc__4AB81AF0" Association="Self.FK__tbVeterin__IdLoc__4AB81AF0">
+      <End Role="tbLocalidades" EntitySet="tbLocalidades" />
+      <End Role="tbVeterinarios" EntitySet="tbVeterinarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbVeterin__IdTip__4BAC3F29" Association="Self.FK__tbVeterin__IdTip__4BAC3F29">
+      <End Role="tbTipoPersonal" EntitySet="tbTipoPersonal" />
+      <End Role="tbVeterinarios" EntitySet="tbVeterinarios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

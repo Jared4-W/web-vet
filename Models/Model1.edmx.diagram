@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fb660a479e6647e7975ccb99b77ca4e1" Name="Diagram1">
+        <EntityTypeShape EntityType="MascotaModel.tbAreas" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MascotaModel.tbEstados" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MascotaModel.tbLocalidades" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MascotaModel.tbMunicipios" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MascotaModel.tbTipoPersonal" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MascotaModel.tbVeterinarios" Width="1.5" PointX="7.5" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="MascotaModel.FK__tbVeterin__IdAre__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="MascotaModel.FK__tbMunicip__IdEst__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="MascotaModel.FK__tbLocalid__IdMun__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="MascotaModel.FK__tbVeterin__IdLoc__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="MascotaModel.FK__tbVeterin__IdTip__4BAC3F29" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

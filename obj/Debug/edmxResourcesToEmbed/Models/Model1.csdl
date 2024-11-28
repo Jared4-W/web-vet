@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MascotaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbAreas">
+    <Key>
+      <PropertyRef Name="IdArea" />
+    </Key>
+    <Property Name="IdArea" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Area" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ubicacion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbVeterinarios" Relationship="Self.FK__tbVeterin__IdAre__4CA06362" FromRole="tbAreas" ToRole="tbVeterinarios" />
+  </EntityType>
+  <EntityType Name="tbEstados">
+    <Key>
+      <PropertyRef Name="IdEstado" />
+    </Key>
+    <Property Name="IdEstado" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Estado" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbMunicipios" Relationship="Self.FK__tbMunicip__IdEst__4222D4EF" FromRole="tbEstados" ToRole="tbMunicipios" />
+  </EntityType>
+  <EntityType Name="tbLocalidades">
+    <Key>
+      <PropertyRef Name="IdLocalidad" />
+    </Key>
+    <Property Name="IdLocalidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Localidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdMunicipio" Type="Int16" />
+    <NavigationProperty Name="tbMunicipios" Relationship="Self.FK__tbLocalid__IdMun__44FF419A" FromRole="tbLocalidades" ToRole="tbMunicipios" />
+    <NavigationProperty Name="tbVeterinarios" Relationship="Self.FK__tbVeterin__IdLoc__4AB81AF0" FromRole="tbLocalidades" ToRole="tbVeterinarios" />
+  </EntityType>
+  <EntityType Name="tbMunicipios">
+    <Key>
+      <PropertyRef Name="IdMunicipio" />
+    </Key>
+    <Property Name="IdMunicipio" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Municipio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdEstado" Type="Byte" />
+    <NavigationProperty Name="tbEstados" Relationship="Self.FK__tbMunicip__IdEst__4222D4EF" FromRole="tbMunicipios" ToRole="tbEstados" />
+    <NavigationProperty Name="tbLocalidades" Relationship="Self.FK__tbLocalid__IdMun__44FF419A" FromRole="tbMunicipios" ToRole="tbLocalidades" />
+  </EntityType>
+  <EntityType Name="tbTipoPersonal">
+    <Key>
+      <PropertyRef Name="IdTipoPer" />
+    </Key>
+    <Property Name="IdTipoPer" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbVeterinarios" Relationship="Self.FK__tbVeterin__IdTip__4BAC3F29" FromRole="tbTipoPersonal" ToRole="tbVeterinarios" />
+  </EntityType>
+  <EntityType Name="tbVeterinarios">
+    <Key>
+      <PropertyRef Name="IdVet" />
+    </Key>
+    <Property Name="IdVet" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ApellidoPaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ApellidoMaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Calle" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NumExt" Type="Int32" />
+    <Property Name="NumInt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CodigoPostal" Type="Int32" Nullable="false" />
+    <Property Name="IdLocalidad" Type="Int32" Nullable="false" />
+    <Property Name="NSS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CURP" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SueldoXDia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="TarjetaCredito" Type="Int32" Nullable="false" />
+    <Property Name="IdTipoPer" Type="Byte" />
+    <Property Name="IdArea" Type="Int16" />
+    <NavigationProperty Name="tbAreas" Relationship="Self.FK__tbVeterin__IdAre__4CA06362" FromRole="tbVeterinarios" ToRole="tbAreas" />
+    <NavigationProperty Name="tbLocalidades" Relationship="Self.FK__tbVeterin__IdLoc__4AB81AF0" FromRole="tbVeterinarios" ToRole="tbLocalidades" />
+    <NavigationProperty Name="tbTipoPersonal" Relationship="Self.FK__tbVeterin__IdTip__4BAC3F29" FromRole="tbVeterinarios" ToRole="tbTipoPersonal" />
+  </EntityType>
+  <Association Name="FK__tbVeterin__IdAre__4CA06362">
+    <End Role="tbAreas" Type="Self.tbAreas" Multiplicity="0..1" />
+    <End Role="tbVeterinarios" Type="Self.tbVeterinarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbAreas">
+        <PropertyRef Name="IdArea" />
+      </Principal>
+      <Dependent Role="tbVeterinarios">
+        <PropertyRef Name="IdArea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbMunicip__IdEst__4222D4EF">
+    <End Role="tbEstados" Type="Self.tbEstados" Multiplicity="0..1" />
+    <End Role="tbMunicipios" Type="Self.tbMunicipios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEstados">
+        <PropertyRef Name="IdEstado" />
+      </Principal>
+      <Dependent Role="tbMunicipios">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbLocalid__IdMun__44FF419A">
+    <End Role="tbMunicipios" Type="Self.tbMunicipios" Multiplicity="0..1" />
+    <End Role="tbLocalidades" Type="Self.tbLocalidades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMunicipios">
+        <PropertyRef Name="IdMunicipio" />
+      </Principal>
+      <Dependent Role="tbLocalidades">
+        <PropertyRef Name="IdMunicipio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbVeterin__IdLoc__4AB81AF0">
+    <End Role="tbLocalidades" Type="Self.tbLocalidades" Multiplicity="1" />
+    <End Role="tbVeterinarios" Type="Self.tbVeterinarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbLocalidades">
+        <PropertyRef Name="IdLocalidad" />
+      </Principal>
+      <Dependent Role="tbVeterinarios">
+        <PropertyRef Name="IdLocalidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbVeterin__IdTip__4BAC3F29">
+    <End Role="tbTipoPersonal" Type="Self.tbTipoPersonal" Multiplicity="0..1" />
+    <End Role="tbVeterinarios" Type="Self.tbVeterinarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoPersonal">
+        <PropertyRef Name="IdTipoPer" />
+      </Principal>
+      <Dependent Role="tbVeterinarios">
+        <PropertyRef Name="IdTipoPer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MascotaEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbAreas" EntityType="Self.tbAreas" />
+    <EntitySet Name="tbEstados" EntityType="Self.tbEstados" />
+    <EntitySet Name="tbLocalidades" EntityType="Self.tbLocalidades" />
+    <EntitySet Name="tbMunicipios" EntityType="Self.tbMunicipios" />
+    <EntitySet Name="tbTipoPersonal" EntityType="Self.tbTipoPersonal" />
+    <EntitySet Name="tbVeterinarios" EntityType="Self.tbVeterinarios" />
+    <AssociationSet Name="FK__tbVeterin__IdAre__4CA06362" Association="Self.FK__tbVeterin__IdAre__4CA06362">
+      <End Role="tbAreas" EntitySet="tbAreas" />
+      <End Role="tbVeterinarios" EntitySet="tbVeterinarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbMunicip__IdEst__4222D4EF" Association="Self.FK__tbMunicip__IdEst__4222D4EF">
+      <End Role="tbEstados" EntitySet="tbEstados" />
+      <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbLocalid__IdMun__44FF419A" Association="Self.FK__tbLocalid__IdMun__44FF419A">
+      <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+      <End Role="tbLocalidades" EntitySet="tbLocalidades" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbVeterin__IdLoc__4AB81AF0" Association="Self.FK__tbVeterin__IdLoc__4AB81AF0">
+      <End Role="tbLocalidades" EntitySet="tbLocalidades" />
+      <End Role="tbVeterinarios" EntitySet="tbVeterinarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbVeterin__IdTip__4BAC3F29" Association="Self.FK__tbVeterin__IdTip__4BAC3F29">
+      <End Role="tbTipoPersonal" EntitySet="tbTipoPersonal" />
+      <End Role="tbVeterinarios" EntitySet="tbVeterinarios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,223 @@
+﻿@model Examen1_JaredChavez.Models.tbVeterinarios
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Registar veterinario</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>ingrese los datos del Veterinario</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApellidoPaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ApellidoPaterno, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ApellidoPaterno, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApellidoMaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ApellidoMaterno, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ApellidoMaterno, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Calle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Calle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Calle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumExt, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NumExt, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NumExt, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumInt, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NumInt, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NumInt, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CodigoPostal, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CodigoPostal, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CodigoPostal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <!--LabelFor(model => model.tbLocalidades.tbMunicipios.IdEstado, "IdEstado"-->
+        @Html.Label("Selecciona estado", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IdEstado", null, "selecciona estado", htmlAttributes: new { @class = "form-control", @onchange = "BuscarMunicipios();" })
+            @Html.ValidationMessageFor(model => model.tbLocalidades.tbMunicipios.IdEstado, "", new { @class = "text-danger" })
+        </div>
+    </div>
+   
+    <div class="form-group">
+        <!--LabelFor(model => model.tbLocalidades.IdMunicipio, "IdMunicipio"-->
+        @Html.Label("Seleccione un municipio", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IdMunicipio", new List<SelectListItem>(), "Seleccionar Municipio", htmlAttributes: new { @class = "form-control", @onchange = "BuscarLocalidades();" })
+            @Html.ValidationMessageFor(model => model.tbLocalidades.IdMunicipio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <!--LabelFor(model => model.IdLocalidad, "IdLocalidad"-->
+        @Html.Label("Selecciona la localidad", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IdLocalidad", new List<SelectListItem>(), "Selecciona localidad", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdLocalidad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NSS, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NSS, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NSS, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CURP, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CURP, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CURP, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SueldoXDia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SueldoXDia, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SueldoXDia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TarjetaCredito, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TarjetaCredito, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TarjetaCredito, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdTipoPer, "IdTipoPer", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IdTipoPer", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdTipoPer, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdArea, "IdArea", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IdArea", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdArea, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
+<script type="text/javascript">
+    function BuscarMunicipios()
+    {
+        var IdSeleccionado = $("#IdEstado").val();  //$ apunta al id de html
+        $("IdMunicipio").empty();    //limpia el dropdownlist        //&& = Y
+        if (IdSeleccionado != null && IdSeleccionado != "")//si el idseleccionado no es igual a nulo o vacio
+        {
+            var parametros = { IdE: IdSeleccionado }           //font a back
+            var metodo = '@Url.Action("GetMunicipios", "Met")'//lama metod que esta desde el controler Met
+            $.ajax(
+            {
+            type: 'POST',
+            url: metodo,
+            dataType: 'json',
+            data: parametros,
+            success: function (listamunicipios) {
+            $.each(listamunicipios, function (i, part) {
+            $("#IdMunicipio").append('<option value="' + part.Value + '">' + part.Text + '</option>');
+            });
+            },
+            error: function (ex) {
+            alert('no se encontraron los municipios.');
+            }
+            });
+            }   //Ajax = invocar metodos y hacer cambios sin actualizar toda la pagina
+            }
+
+            function BuscarLocalidades()
+            {
+            var IdSeleccionado = $("#IdMunicipio").val();  //$ apunta al id de html
+            $("IdLocalidad").empty();    //limpia el dropdownlist        //&& = Y
+            if (IdSeleccionado != null && IdSeleccionado != "")//si el idseleccionado no es igual a nulo o vacio
+            {
+            var parametros = { IdL: IdSeleccionado }           //font a back
+            var metodo = '@Url.Action("GetLocalidades", "Met")'//lama metod que esta desde el controler Met
+            $.ajax(
+            {
+            type: 'POST',
+            url: metodo,
+            dataType: 'json',
+            data: parametros,
+            success: function (listalocalidad) {
+            $.each(listalocalidad, function (i, part) {
+            $("#IdLocalidad").append('<option value="' + part.Value + '">' + part.Text + '</option>');
+            });
+            },
+            error: function (ex) {
+            alert('no se encontraron las localidades.');
+            }
+            });
+            }   //Ajax = invocar metodos y hacer cambios sin actualizar toda la pagina
+            }
+            </script>
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }

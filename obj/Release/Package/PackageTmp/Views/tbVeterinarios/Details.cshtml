@@ -1,0 +1,138 @@
+﻿@model Examen1_JaredChavez.Models.tbVeterinarios
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles del veterinario</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApellidoPaterno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApellidoPaterno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApellidoMaterno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApellidoMaterno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumExt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumExt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumInt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumInt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoPostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoPostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NSS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NSS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CURP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CURP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SueldoXDia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SueldoXDia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TarjetaCredito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TarjetaCredito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbAreas.Area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbAreas.Area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbLocalidades.Localidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbLocalidades.Localidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbTipoPersonal.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbTipoPersonal.Tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdVet }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

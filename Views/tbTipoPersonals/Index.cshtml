@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Examen1_JaredChavez.Models.tbTipoPersonal>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>tipo de personal de la veterinaria</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdTipoPer }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IdTipoPer }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IdTipoPer })
+        </td>
+    </tr>
+}
+
+</table>
